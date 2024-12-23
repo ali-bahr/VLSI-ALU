@@ -1,0 +1,28 @@
+# Compile of multiplier_3.v failed with 1 errors.
+# Compile of tb_3.v was successful.
+# 2 compiles, 1 failed with 1 error.
+# Compile of multiplier_3.v was successful.
+# Compile of tb_3.v was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -gui work.tb
+# vsim -gui work.tb 
+# Start time: 23:31:17 on Dec 23,2024
+# Loading work.tb
+# Loading work.sequential_multiplier
+add wave -position insertpoint sim:/tb/*
+run
+# Starting Testbench
+# Test Passed: A =          10, B =          20, Result =                  200
+# Test Passed: A =         -10, B =          20, Result = 18446744073709551416
+# Test Passed: A =          10, B =         -20, Result = 18446744073709551416
+# Test Passed: A =         -10, B =         -20, Result =                  200
+# Test Passed: A =          10, B =           0, Result =                    0
+# Test Passed: A =           0, B =          10, Result =                    0
+# Test Passed: A =  2147483647, B =  2147483647, Result =  4611686014132420609
+# Test Failed: A =   303379748, B = -1064739199, Expected =                     x, Got = 18123723763831209764
+# Test Failed: A = -2071669239, B = -1309649309, Expected =                     x, Got =  2713160187332905851
+# All test cases completed
+# ** Note: $finish    : C:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier/tb_3.v(43)
+#    Time: 90 ps  Iteration: 0  Instance: /tb
+# 1
+# Break in Module tb at C:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier/tb_3.v line 43

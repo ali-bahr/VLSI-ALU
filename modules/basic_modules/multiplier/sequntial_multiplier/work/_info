@@ -1,0 +1,57 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1
+vsequential_multiplier
+Z0 !s110 1734989464
+!i10b 1
+!s100 e>M9<0E5L7Lfa]An[;nC=0
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I2oz5jb@JhD2KRIl@@@XT60
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dC:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier
+w1734989459
+8C:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier/multiplier_3.v
+FC:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier/multiplier_3.v
+!i122 1
+L0 1 27
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1734989464.000000
+!s107 C:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier/multiplier_3.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier/multiplier_3.v|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+vtb
+R0
+!i10b 1
+!s100 3T9_dZKQ3bFo]Nc=IGOY=0
+R1
+I0;diQ`az9KO7ooz_]:?Kc2
+R2
+R3
+w1734989315
+8C:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier/tb_3.v
+FC:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier/tb_3.v
+!i122 2
+L0 1 60
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier/tb_3.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/User/Desktop/vlsi project/VLSI_ALU/modules/basic_modules/multiplier/sequntial_multiplier/tb_3.v|
+!i113 1
+R6
+R7
