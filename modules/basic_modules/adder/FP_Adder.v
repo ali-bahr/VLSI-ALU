@@ -1,36 +1,44 @@
-module RippleCarryAdder(a, b, cin, sum, cout);
-    input [31:0] a, b;
-    input cin;
-    output [31:0] sum;
-    output cout;
-    wire [31:0] carry;
+module fp_adder (
+    input [31:0] A,
+    input [31:0] B,
+    output [31:0] Sum
+);
 
-    assign {cout, sum} = a + b + cin;
-endmodule
-
-module FloatingPointAdder(A, B, Sum);
-    input [31:0] A, B;
-    output [31:0] Sum;
-
-    wire [23:0] mantissa_a, mantissa_b, mantissa_sum;
-    wire [7:0] exponent_a, exponent_b, exponent_diff;
-    wire sign_a, sign_b, sign_sum;
-    wire carry_out;
+    wire [7:0] exp_a, exp_b, exp_diff;
+    wire [23:0] mant_a, mant_b, mant_sum;
+    wire sign_a, sign_b, sign_result;
+    wire [31:0] aligned_mant_a, aligned_mant_b;
+    wire [31:0] mant_sum_extended;
+    wire [7:0] exp_result;
+    wire [23:0] mant_result;
+    wire carry;
 
     assign sign_a = A[31];
     assign sign_b = B[31];
-    assign exponent_a = A[30:23];
-    assign exponent_b = B[30:23];
-    assign mantissa_a = {1'b1, A[22:0]};
-    assign mantissa_b = {1'b1, B[22:0]};
+    assign exp_a = A[30:23];
+    assign exp_b = B[30:23];
+    assign mant_a = {1'b1, A[22:0]};
+    assign mant_b = {1'b1, B[22:0]};
 
-    assign exponent_diff = exponent_a - exponent_b;
+    assign exp_diff = exp_a - exp_b;
 
-    wire [31:0] shifted_mantissa_b = mantissa_b >> exponent_diff;
+    assign aligned_mant_a = (exp_a >= exp_b) ? mant_a : (mant_a >> exp_diff);
+    assign aligned_mant_b = (exp_b >= exp_a) ? mant_b : (mant_b >> exp_diff);
 
-    RippleCarryAdder rca(mantissa_a, shifted_mantissa_b, 1'b0, mantissa_sum, carry_out);
+    // assign mant_sum_extended = (sign_a == sign_b) ? (aligned_mant_a + aligned_mant_b) : (aligned_mant_a - aligned_mant_b);
 
-    assign Sum[31] = sign_a;
-    assign Sum[30:23] = exponent_a;
-    assign Sum[22:0] = mantissa_sum[22:0];
+    CarryBypassAdder CBA(
+        aligned_mant_a,
+        aligned_mant_b,
+        mant_sum_extended,
+        carry
+    );
+
+    assign sign_result = (mant_sum_extended[24]) ? sign_a : sign_b;
+    assign mant_result = (mant_sum_extended[24]) ? mant_sum_extended[23:1] : mant_sum_extended[22:0];
+    assign exp_result = (mant_sum_extended[24]) ? (exp_a + 1) : exp_a;
+
+    assign Sum = {sign_result, exp_result, mant_result[22:0]};
+
 endmodule
+
