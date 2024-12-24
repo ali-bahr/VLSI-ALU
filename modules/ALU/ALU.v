@@ -12,13 +12,12 @@ wire [63:0] mult_result;
 
 wire temp_carry;
 
-// let's take CarryByPassAdder for now
-
-CarryBypassAdder CBA (
+// Floating Point Adder for now
+fp_adder FPA (
     .A(A),
     .B(B),
     .Sum(add_result),
-    .Cout(temp_carry)
+    .carry(temp_carry)
 );
 
 // let's take multiplier_simple for now

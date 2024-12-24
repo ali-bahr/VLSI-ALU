@@ -1,7 +1,8 @@
 module fp_adder (
     input [31:0] A,
     input [31:0] B,
-    output [31:0] Sum
+    output [31:0] Sum,
+    output carry
 );
 
     wire [7:0] exp_a, exp_b, exp_diff;
@@ -11,7 +12,6 @@ module fp_adder (
     wire [31:0] mant_sum_extended;
     wire [7:0] exp_result;
     wire [23:0] mant_result;
-    wire carry;
 
     assign sign_a = A[31];
     assign sign_b = B[31];
