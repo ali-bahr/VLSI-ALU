@@ -3,12 +3,12 @@ module ALU (
     input [31:0] B,
     input selector,
 
-    output reg [63:0] Result,
+    output reg [31:0] Result,
     output reg carry
 );
 
 wire [31:0] add_result;
-wire [63:0] mult_result;
+wire [31:0] mult_result;
 
 wire temp_carry;
 
@@ -21,10 +21,11 @@ fp_adder FPA (
 );
 
 
-flaoting_point_nult FPM (
+floating_point_multplier FPM (
     .a(A),
     .b(B),
-    .product(mult_result)
+    .product(mult_result),
+    .overflow(temp_carry)
 );
 
 always @(*) begin 
@@ -33,7 +34,7 @@ always @(*) begin
         carry = temp_carry;
     end else begin
         Result = mult_result;
-        carry = 1'b0;
+        carry = temp_carry;
     end 
 end
 

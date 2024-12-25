@@ -13,7 +13,7 @@ module floating_point_multiplier_sequential_tb;
   end
 
 
-    FPM inst (
+    floating_point_multplier inst (
         .a(a),
         .b(b),
         .product(product),
