@@ -4,20 +4,24 @@ module ALU (
     input selector,
 
     output reg [31:0] Result,
-    output reg carry
+    output reg carry,
+    output reg overflow
 );
 
 wire [31:0] add_result;
 wire [31:0] mult_result;
 
 wire temp_carry;
+wire temp_overflow;
+
 
 // Floating Point Adder for now
-fp_adder FPA (
+floating_point_adder FPA (
     .A(A),
     .B(B),
-    .Sum(add_result),
-    .carry(temp_carry)
+    .sum(add_result),
+    .cout(temp_carry),
+    .overflow(temp_overflow)
 );
 
 
@@ -25,7 +29,7 @@ floating_point_multplier FPM (
     .a(A),
     .b(B),
     .product(mult_result),
-    .overflow(temp_carry)
+    .overflow(temp_overflow)
 );
 
 always @(*) begin 
@@ -34,7 +38,7 @@ always @(*) begin
         carry = temp_carry;
     end else begin
         Result = mult_result;
-        carry = temp_carry;
+        overflow = temp_overflow;
     end 
 end
 

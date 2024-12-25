@@ -10,6 +10,8 @@ module ALU_tb;
     // Outputs
     wire [31:0] Result;
     wire carry;
+    wire overflow;
+
 
     // Instantiate the Unit Under Test (UUT)
     ALU uut (
@@ -17,7 +19,8 @@ module ALU_tb;
         .B(B),
         .selector(selector),
         .Result(Result),
-        .carry(carry)
+        .carry(carry),
+        .overflow(overflow)
     );
 
     // Test vectors

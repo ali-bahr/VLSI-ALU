@@ -17,7 +17,7 @@ module floating_point_adder (
         reg mantissa_overflow;
         reg mantissa_cin;
         msb msb0(mantissa_padded, shift_cnt);
-        carry_look_ahead_32bit fpadder(mantissa_a, mantissa_b, mantissa_cin, adder_output, adder_cout, adder_overflow );
+        RippleCarryAdder24 fpadder(mantissa_a, mantissa_b, mantissa_cin, adder_output, adder_cout );
 
         always @(*) begin
             mantissa_a = {2'b01, A[22:0]};
