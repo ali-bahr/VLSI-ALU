@@ -1,54 +1,49 @@
-module FP_Add_tb;
+module floating_point_adder_tb;
 
+    // Inputs
     reg [31:0] A;
     reg [31:0] B;
-    wire [31:0] Sum;
 
-    fp_adder uut (
+    // Outputs
+    wire [31:0] sum;
+    wire cout;
+    wire overflow;
+
+    // Instantiate the Unit Under Test (UUT)
+    floating_point_adder uut (
         .A(A),
         .B(B),
-        .Sum(Sum)
+        .sum(sum),
+        .cout(cout),
+        .overflow(overflow)
     );
 
+    // Test Vectors
     initial begin
-        // Test case 
-        A = 32'h40400000; // 3.0 in IEEE 754 format
-        B = 32'h40000000; // 2.0 in IEEE 754 format
+        // Test 1: Addition of two positive numbers (1.0 + 2.0)
+        A = 32'h3F800000; // 1.0 in IEEE 754
+        B = 32'h40000000; // 2.0 in IEEE 754
         #10;
-        $display("A = %h, B = %h, Sum = %h", A, B, Sum);
+        $display("Test 1: 1.0 + 2.0 = %h, cout = %b, overflow = %b", sum, cout, overflow);
 
-        // // Test case 2
-        // A = 32'h40400000; // 3.0 in IEEE 754 format
-        // B = 32'hC0000000; // -2.0 in IEEE 754 format
-        // #10;
-        // $display("A = %h, B = %h, Sum = %h", A, B, Sum);
-
-        // // Test case 3
-        // A = 32'h3F800000; // 1.0 in IEEE 754 format
-        // B = 32'hBF800000; // -1.0 in IEEE 754 format
-        // #10;
-        // $display("A = %h, B = %h, Sum = %h", A, B, Sum);
-
-        // Test case 
-        A = 32'h3F800000; // 1.0 in IEEE 754 format
-        B = 32'h3F800000; // 1.0 in IEEE 754 format
+        // Test 2: Addition of positive and negative number (1.0 + (-1.0))
+        A = 32'h3F800000; // 1.0 in IEEE 754
+        B = 32'hBF800000; // -1.0 in IEEE 754
         #10;
-        $display("A = %h, B = %h, Sum = %h", A, B, Sum);
+        $display("Test 2: 1.0 + (-1.0) = %h, cout = %b, overflow = %b", sum, cout, overflow);
 
+        // Test 3: Addition of zero (1.0 + 0.0)
+        A = 32'h3F800000; // 1.0 in IEEE 754
+        B = 32'h00000000; // 0.0 in IEEE 754
+        #10;
+        $display("Test 3: 1.0 + 0.0 = %h, cout = %b, overflow = %b", sum, cout, overflow);
+
+        // Test 4: Overflow Test (large numbers)
+        A = 32'h7F800000; // Infinity in IEEE 754
+        B = 32'h7F800000; // Infinity in IEEE 754
+        #10;
+        $display("Test 4: Infinity + Infinity = %h, cout = %b, overflow = %b", sum, cout, overflow);
         
-        // Test case 
-        A = 32'h41A40000; // 20.5 in IEEE 754 format
-        B = 32'h4149999A; // 12.6 in IEEE 754 format
-        #10;
-        $display("A = %h, B = %h, Sum = %h", A, B, Sum);
-
-        // Test case Overflow
-        A = 32'h7F7FC99E; // 20.5 in IEEE 754 format
-        B = 32'h7F7FC99E; // 12.6 in IEEE 754 format
-        #10;
-        $display("A = %h, B = %h, Sum = %h", A, B, Sum);
-
-        $stop;
     end
 
 endmodule
