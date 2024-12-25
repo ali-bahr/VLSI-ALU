@@ -20,9 +20,8 @@ fp_adder FPA (
     .carry(temp_carry)
 );
 
-// let's take multiplier_simple for now
 
-multiplier_simple MS (
+flaoting_point_nult FPM (
     .a(A),
     .b(B),
     .product(mult_result)
